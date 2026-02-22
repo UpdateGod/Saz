@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Little LLM v0</title>
+<style>
+body {
+  font-family: system-ui;
+  text-align: center;
+  margin-top: 80px;
+}
+button {
+  font-size: 20px;
+  padding: 10px 20px;
+  margin: 10px;
+}
+#sequence {
+  font-size: 40px;
+  margin: 40px 0;
+}
+</style>
+</head>
+<body>
+
+<h1>Little Language Model</h1>
+
+<div id="sequence">Press Generate</div>
+
+<button onclick="generate()">Generate</button>
+<br>
+<button onclick="yes()">YES</button>
+<button onclick="no()">NO</button>
+
+<p id="score">Score: 0</p>
+
+<script>
+let tokens = ["D","F","I"];
+let current = "";
+let score = 0;
+
+function generate() {
+  current = tokens.slice().sort(() => Math.random() - 0.5).join("");
+  document.getElementById("sequence").innerText = current;
+}
+
+function yes() {
+  if (!current) return;
+  score++;
+  update();
+}
+
+function no() {
+  if (!current) return;
+  score--;
+  update();
+}
+
+function update() {
+  document.getElementById("score").innerText = "Score: " + score;
+}
+</script>
+
+</body>
+</html>
